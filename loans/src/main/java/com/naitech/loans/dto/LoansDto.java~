@@ -1,0 +1,4 @@
+package com.naitech.loans.dto;
+
+public class LoansDto {
+}

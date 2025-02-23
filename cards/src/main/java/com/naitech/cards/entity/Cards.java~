@@ -1,0 +1,4 @@
+package com.naitech.cards.entity;
+
+public class Cards {
+}
