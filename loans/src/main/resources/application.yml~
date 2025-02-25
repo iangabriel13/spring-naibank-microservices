@@ -1,33 +1,20 @@
 server:
-  port: 9000
+  port: 8090
 
 spring:
   application:
-    name: cards
+    name: loans
   profiles:
     active: prod
   datasource:
-    url: jdbc:h2:mem:testdb
-    driverClassName: org.h2.Driver
-    username: sa
-    password: ''
-  h2:
-    console:
-      enabled: true
+    url: jdbc:mysql://localhost:3306/loansdb
+    username: root
+    password: admin123
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: update
     show-sql: true
-#  datasource:
-#    url: jdbc:mysql://localhost:3306/cardsdb
-#    username: root
-#    password: admin123
-#  jpa:
-#    show-sql: true
-#  sql:
-#    init:
-#      mode: always
+  sql:
+    init:
+      mode: always
   config:
     import: optional:configserver:http://localhost:8071/
 #  rabbitmq:
@@ -59,6 +46,6 @@ eureka:
 
 info:
   app:
-    name: cards
-    description: Nai Bank Cards Application
+    name: loans
+    description: Nai Bank Loans Application
     version: 1.0.0
