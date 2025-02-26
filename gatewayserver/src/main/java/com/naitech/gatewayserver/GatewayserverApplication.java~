@@ -1,0 +1,38 @@
+package com.naitech.gatewayserver;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.gateway.route.RouteLocator;
+import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
+import org.springframework.context.annotation.Bean;
+
+import java.time.LocalDateTime;
+
+@SpringBootApplication
+public class GatewayserverApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(GatewayserverApplication.class, args);
+	}
+
+	@Bean
+	public RouteLocator naiBankRouteConfig(RouteLocatorBuilder routeLocatorBuilder) {
+		return routeLocatorBuilder.routes()
+				.route(p -> p
+						.path("/naibank/accounts/**")
+						.filters( f -> f.rewritePath("/naibank/accounts/(?<segment>.*)","/${segment}")
+								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+						.uri("lb://ACCOUNTS"))
+				.route(p -> p
+						.path("/naibank/loans/**")
+						.filters( f -> f.rewritePath("/naibank/loans/(?<segment>.*)","/${segment}")
+								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+						.uri("lb://LOANS"))
+				.route(p -> p
+						.path("/naibank/cards/**")
+						.filters( f -> f.rewritePath("/naibank/cards/(?<segment>.*)","/${segment}")
+								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+						.uri("lb://CARDS")).build();
+	}
+
+}

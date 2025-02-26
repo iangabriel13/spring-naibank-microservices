@@ -130,6 +130,7 @@
 				<configuration>
 					<image>
 						<name>iannunes/${project.artifactId}:latest</name>
+						<builder>paketobuildpacks/builder-jammy-full</builder>
 					</image>
 					<excludes>
 						<exclude>
