@@ -1,0 +1,4 @@
+package com.naitech.gatewayserver.controller;
+
+public class FallbackController {
+}
