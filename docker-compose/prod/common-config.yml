@@ -22,9 +22,14 @@ services:
     deploy:
       resources:
         limits:
-          memory: 700m
+          memory: 850m
+    #    environment:
+    #      SPRING_RABBITMQ_HOST: "rabbit"
     environment:
-      SPRING_RABBITMQ_HOST: "rabbit"
+      JAVA_TOOL_OPTIONS: "-javaagent:/workspace/BOOT-INF/lib/opentelemetry-javaagent-2.13.3.jar"
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://tempo:4318
+      OTEL_METRICS_EXPORTER: none
+      OTEL_LOGS_EXPORTER: none
 
   microservice-configserver-config:
     extends:

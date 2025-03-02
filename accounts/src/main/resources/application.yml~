@@ -59,6 +59,9 @@ management:
   info:
     env:
       enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 eureka:
   instance:
@@ -104,6 +107,6 @@ resilience4j.retry:
 resilience4j.ratelimiter:
   configs:
     default:
-      timeoutDuration: 1000
-      limitRefreshPeriod: 5000
-      limitForPeriod: 1
+      timeout-duration: 1000
+      limit-refresh-period: 5000
+      limit-for-period: 1
