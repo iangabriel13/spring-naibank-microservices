@@ -58,6 +58,19 @@ services:
 #      file: common-config.yml
 #      service: network-deploy-service
 
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0.7
+    container_name: keycloak
+    ports:
+      - "7080:8080"
+    environment:
+      KEYCLOAK_ADMIN: "admin"
+      KEYCLOAK_ADMIN_PASSWORD: "admin"
+    command: "start-dev"
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
+
   read:
     image: grafana/loki:3.1.2
     command: "-config.file=/etc/loki/config.yaml -target=read"
@@ -318,8 +331,8 @@ services:
   accounts:
     image: "iannunes/accounts:latest"
     container_name: accounts
-    ports:
-      - "8080:8080"
+#    ports:
+#      - "8080:8080"
     depends_on:
 #      testdb:
 #        condition: service_healthy
@@ -337,10 +350,6 @@ services:
       SPRING_APPLICATION_NAME: accounts
 #      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/accountsdb
       OTEL_SERVICE_NAME: "accounts"
-    deploy:
-      resources:
-        limits:
-          memory: 1000m
     extends:
       file: common-config.yml
       service: microservice-eureka-config
@@ -348,8 +357,8 @@ services:
   loans:
     image: "iannunes/loans:latest"
     container_name: loans
-    ports:
-      - "8090:8090"
+#    ports:
+#      - "8090:8090"
     depends_on:
 #      testdb:
 #        condition: service_healthy
@@ -374,8 +383,8 @@ services:
 #  loans1:
 #    image: "iannunes/loans:latest"
 #    container_name: loans1
-#    ports:
-#      - "8091:8090"
+#    # ports:
+#    #   - "8091:8090"
 #    depends_on:
 #      #      testdb:
 #      #        condition: service_healthy
@@ -400,8 +409,8 @@ services:
   cards:
     image: "iannunes/cards:latest"
     container_name: cards
-    ports:
-      - "9000:9000"
+#    ports:
+#      - "9000:9000"
     depends_on:
 #      testdb:
 #        condition: service_healthy
