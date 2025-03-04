@@ -1,4 +1,0 @@
-package com.naitech.loans.exception;
-
-public class ResourceNotFoundException {
-}

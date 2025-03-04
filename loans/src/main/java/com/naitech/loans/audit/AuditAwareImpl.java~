@@ -1,4 +1,0 @@
-package com.naitech.loans.audit;
-
-public class AuditAwareImpl {
-}

@@ -1,4 +1,0 @@
-package com.naitech.loans.dto;
-
-public class ErrorResponseDto {
-}

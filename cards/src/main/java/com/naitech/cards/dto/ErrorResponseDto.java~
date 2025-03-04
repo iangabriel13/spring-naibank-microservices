@@ -1,4 +1,0 @@
-package com.naitech.cards.dto;
-
-public class ErrorResponseDto {
-}

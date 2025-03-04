@@ -1,4 +1,0 @@
-package com.naitech.cards.repository;
-
-public interface CardsRepository {
-}
